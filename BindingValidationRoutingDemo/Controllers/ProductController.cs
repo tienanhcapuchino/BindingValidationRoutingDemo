@@ -28,5 +28,11 @@ namespace BindingValidationRoutingDemo.Controllers
                 x.ReorderLevel
             }).ToList());
         }
+        [Route("/test/(id)")]
+        [HttpGet]
+        public IActionResult GetTest(int id)
+        {
+            return Ok(id);
+        }
     }
 }
