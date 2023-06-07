@@ -22,8 +22,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseAuthorization();
-
-app.MapControllers();
+app.UseRouting();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
+//app.MapControllers();
+app.MapGet("/hello/{name:alpha}", (string name) => $"Hello {name}!");
+app.MapGet("/hello/tien/aa", () => "Hello aaa !");
+app.MapGet("/", () => "Hello World!");
 
 app.Run();
