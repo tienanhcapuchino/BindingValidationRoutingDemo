@@ -1,14 +1,32 @@
 using BindingValidationRoutingDemo.Models;
 using Microsoft.EntityFrameworkCore;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddFluentValidation( c => c.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly()));
+
+
+
+/*
+ builder.Services.AddControllers().AddFluentValidation();
+
+ 
+ 
+ */
+
+
+
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 builder.Services.AddDbContext<NorthwindContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("APIConnectStr"));
